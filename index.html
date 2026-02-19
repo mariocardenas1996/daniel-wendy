@@ -390,7 +390,7 @@ Con mucha alegría compartimos con ustedes el inicio de esta nueva etapa en nues
     countdown.innerHTML = `${days} días ${hours}h ${minutes}m ${seconds}s`;
   }, 1000);
 
-  let index = 0;
+let index = 0;
 const track = document.getElementById('track');
 const dots = document.querySelectorAll('.dot');
 
@@ -421,7 +421,9 @@ function handleSwipe(endX) {
   if (endX - startX > 50) index--;     // derecha
 
   const total = track.children.length;
-  index = Math.max(0, Math.min(index, total - 1));
+
+ index = (index + total) % total;
+
 
   track.style.transform = `translateX(-${index * 100}%)`;
 
