@@ -78,7 +78,7 @@
 
     .carousel {
       position: relative;
-      max-width: 90%;
+      max-width: 100%;
       margin: auto;
       overflow: hidden;
     }
@@ -88,10 +88,10 @@
       transition: transform 0.5s ease;
     }
 
-    .carousel img {
-      width: 100%;
-      border-radius: 12px;
-    }
+    .carousel-track img {
+  min-width: 100%;
+}
+
 
     .carousel-buttons {
       margin-top: 10px;
@@ -106,10 +106,19 @@
       cursor: pointer;
     }
 
-    .countdown {
-      font-size: 28px;
-      letter-spacing: 2px;
-    }
+   .countdown {
+  font-size: 28px;
+  padding: 20px 30px;
+  border-radius: 15px;
+  display: inline-block;
+  border: 2px solid #d4af37;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+
 
     .card {
       background: #ffffff;
@@ -152,6 +161,23 @@
       padding: 15px;
       cursor: pointer;
     }
+
+  .icono-img {
+  width: 100px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+  .icono2-img {
+   width: 100px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+  .icono3-img {
+   width: 150px;
+  text-align: center;
+  margin-bottom: 20px;
+}
   </style>
 </head>
 <body>
@@ -171,7 +197,9 @@
 </header>
 
 <section>
-  <p>"Con amor y alegría te invitamos a compartir el inicio de nuestra nueva historia juntos". <br> "Una cuerda triple no se rompe facilmente (Eclesiastés 4:12)".</p>
+  <p>"Ponme como un sello sobre tu corazón, como un sello sobre tu brazo, porque el amor es tan fuerte como la muerte” <br>(cantar de los cantares 8:6)<br>
+<br>
+Con mucha alegría compartimos con ustedes el inicio de esta nueva etapa en nuestras vidas…</p>
 </section>
 
 <section>
@@ -216,13 +244,63 @@
 <section>
   <div class="card">
     <h2>Itinerario</h2>
-    <p>5:00 PM - Ceremonia</p>
-    <p>7:00 PM - Recepción</p>
-    <p>9:00 PM - Cena</p>
+
+<div class="icono-texto">
+  <img src="icono1.png" class="icono-img">
+</div>
+<p> 3:30 PM <br> <br>Recepción de invitados.</p>
+
+<div class="icono-texto">
+  <img src="icono2.png" class="icono-img">
+</div>
+
+    <p>4:00 PM <br><br> Discurso Biblico.</p>
+
+<div class="icono-texto">
+  <img src="icono3.png" class="icono-img">
+</div>
+
+    <p>4:30 PM a 5:00 PM <br><br> Sesión de fotos con los novios.</p>
+
+<div class="icono-texto">
+  <img src="icono4.png" class="icono-img">
+</div>
+
+<p>
+  5:00 PM a 6:00 PM <br><br>Banquete.
+</p>
+
+<div class="icono-texto">
+  <img src="icono6.png" class="icono-img">
+</div>
+
+<p>
+  7:30 PM <br><br> Baile.
+</p>
+
+<div class="icono-texto">
+  <img src="icono5.png" class="icono-img">
+</div>
+
+<p>
+   7:45 PM a 9:50 PM <br><br> Pastel y Baile de Novios
+</p>
+
+<div class="icono-texto">
+  <img src="icono7.png" class="icono-img">
+</div>
+
+<P>
+  9:50 PM <br><br> Fin de la Fiesta
+</P>
   </div>
 </section>
 
 <section>
+  <div class="icono-texto">
+  <img src="icono9.png" class="icono2-img">
+</div>
+
   <div class="card">
     <h2>Vestimenta</h2>
     <p>Etiqueta Formal</p>
@@ -230,15 +308,20 @@
 </section>
 
 <section>
+
+  <div class="icono-texto">
+  <img src="icono8.png" class="icono2-img">
+</div>
+
   <div class="card">
     <h2>Regalos</h2>
-    <p>Tu presencia es nuestro mejor regalo, pero si deseas darnos algun presente ya sea economico o para nuestro hogar se los agradeceriamos de corazón. </p>
+    <p>Su presencia es nuestro mejor regalo, pero si deseas darnos un obsequio ya sea economico o para nuestro hogar te lo agradecemos de corazón. </p>
   </div>
 </section>
 
 <section>
   <h2>Ubicación</h2>
-  <iframe src="https://www.google.com/maps?q=salon+de+eventos&output=embed"></iframe>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.621217620594!2d-103.26219859999999!3d20.6442907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b4743de2e271%3A0xdd51ed78ed1c23a1!2sTerraza%20Eventtia!5e0!3m2!1ses!2smx!4v1771479981252!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </section>
 
 <section>
@@ -260,7 +343,7 @@
   sections.forEach(section => observer.observe(section));
 
   const countdown = document.getElementById('countdown');
-  const weddingDate = new Date('2026-12-31T17:00:00').getTime();
+  const weddingDate = new Date('2026-03-29T15:30:00').getTime();
 
   setInterval(() => {
     const now = new Date().getTime();
@@ -284,12 +367,15 @@
 
   const music = document.getElementById('music');
   function toggleMusic() {
-    if (music.paused) {
-      music.play();
-    } else {
-      music.pause();
-    }
+  if (music.paused) {
+    music.play().catch(() => {
+      alert("Toca la pantalla primero para activar la música");
+    });
+  } else {
+    music.pause();
   }
+}
+
 </script>
 
 </body>
