@@ -416,20 +416,35 @@ track.addEventListener("mouseup", e => {
   handleSwipe(endX);
 });
 
+let isMoving = false;
+
 function handleSwipe(endX) {
-  if (startX - endX > 50) index++;     // izquierda
-  if (endX - startX > 50) index--;     // derecha
+  if (isMoving) return; // 🚫 evita múltiples ejecuciones
 
   const total = track.children.length;
 
- index = (index + total) % total;
+  if (startX - endX > 50) index++;     // izquierda
+  else if (endX - startX > 50) index--; // derecha
+  else return; // si no se movió suficiente, no hace nada
 
+  index = (index + total) % total;
+
+  isMoving = true;
 
   track.style.transform = `translateX(-${index * 100}%)`;
 
   dots.forEach(dot => dot.classList.remove("active"));
   dots[index].classList.add("active");
+
+  // ⏳ desbloquea después de la animación
+  setTimeout(() => {
+    isMoving = false;
+  }, 700); // igual a tu transition (0.75s)
 }
+
+track.addEventListener("touchmove", e => {
+  e.preventDefault();
+}, { passive: false });
 
 
   const music = document.getElementById('music');
@@ -442,7 +457,9 @@ function handleSwipe(endX) {
     music.pause();
   }
 }
+
 });
+
 </script>
 
 </body>
