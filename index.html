@@ -363,8 +363,8 @@ Con mucha alegría compartimos con ustedes el inicio de esta nueva etapa en nues
 </section>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll("section");
-
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -442,7 +442,7 @@ function handleSwipe(endX) {
     music.pause();
   }
 }
-
+});
 </script>
 
 </body>
