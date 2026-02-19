@@ -11,7 +11,7 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Georgia', serif;
       background: #ffffff;
       color: #000000;
       scroll-behavior: smooth;
@@ -179,10 +179,37 @@
   text-align: center;
   margin-bottom: 20px;
 }
+
+.dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  margin: 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.dot.active {
+  background-color: gold;
+  transform: scale(1.3);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform .75s ease-in-out;
+}
+
+
   </style>
 </head>
-<body>
 
+<body>
 <audio id="music" loop>
   <source src="musica.mp3" type="audio/mpeg">
 </audio>
@@ -214,10 +241,14 @@ Con mucha alegría compartimos con ustedes el inicio de esta nueva etapa en nues
       <img src="5.jpeg">
     </div>
   </div>
-  <div class="carousel-buttons">
-    <button onclick="moveSlide(-1)">◀</button>
-    <button onclick="moveSlide(1)">▶</button>
-  </div>
+ <div class="dots" id="dots">
+  <span class="dot active"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+
 </section>
 
 <section>
@@ -360,12 +391,44 @@ Con mucha alegría compartimos con ustedes el inicio de esta nueva etapa en nues
   }, 1000);
 
   let index = 0;
-  function moveSlide(direction) {
-    const track = document.getElementById('track');
-    const total = track.children.length;
-    index = (index + direction + total) % total;
-    track.style.transform = `translateX(-${index * 100}%)`;
-  }
+const track = document.getElementById('track');
+const dots = document.querySelectorAll('.dot');
+
+let startX = 0;
+
+// Touch (celular)
+track.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  handleSwipe(endX);
+});
+
+// Mouse (PC)
+track.addEventListener("mousedown", e => {
+  startX = e.clientX;
+});
+
+track.addEventListener("mouseup", e => {
+  let endX = e.clientX;
+  handleSwipe(endX);
+});
+
+function handleSwipe(endX) {
+  if (startX - endX > 50) index++;     // izquierda
+  if (endX - startX > 50) index--;     // derecha
+
+  const total = track.children.length;
+  index = Math.max(0, Math.min(index, total - 1));
+
+  track.style.transform = `translateX(-${index * 100}%)`;
+
+  dots.forEach(dot => dot.classList.remove("active"));
+  dots[index].classList.add("active");
+}
+
 
   const music = document.getElementById('music');
   function toggleMusic() {
