@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel & Wendy</title>
+  <link rel="manifest" href="manifest.json">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #ffffff;
+      color: #000000;
+      scroll-behavior: smooth;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #ffffff;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: #000000;
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      color: #ffffff;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    header {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .overlay h1 {
+      font-size: 3em;
+      letter-spacing: 2px;
+    }
+
+    .overlay h3 {
+      font-weight: 300;
+      margin-top: 10px;
+    }
+
+    .carousel {
+      position: relative;
+      max-width: 90%;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .carousel-buttons {
+      margin-top: 10px;
+    }
+
+    .carousel-buttons button {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      border-radius: 50%;
+      background: gold;
+      cursor: pointer;
+    }
+
+    .countdown {
+      font-size: 28px;
+      letter-spacing: 2px;
+    }
+
+    .card {
+      background: #ffffff;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: gold;
+      color: black;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #d4af37;
+    }
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: gold;
+      border-radius: 50%;
+      padding: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<audio id="music" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-control" onclick="toggleMusic()">🎵</div>
+
+<header>
+  <img src="portada.jpeg">
+  <div class="overlay">
+    <h1>Wendy Castro & Daniel Navarro</h1>
+    <h3>29 de Marzo del 2026</h3>
+  </div>
+</header>
+
+<section>
+  <p>"Con amor y alegría te invitamos a compartir el inicio de nuestra nueva historia juntos". <br> "Una cuerda triple no se rompe facilmente (Eclesiastés 4:12)".</p>
+</section>
+
+<section>
+  <h2>Nuestros Momentos</h2>
+  <div class="carousel">
+    <div class="carousel-track" id="track">
+      <img src="1.jpeg">
+      <img src="2.jpeg">
+      <img src="3.jpeg">
+      <img src="4.jpeg">
+      <img src="5.jpeg">
+    </div>
+  </div>
+  <div class="carousel-buttons">
+    <button onclick="moveSlide(-1)">◀</button>
+    <button onclick="moveSlide(1)">▶</button>
+  </div>
+</section>
+
+<section>
+  <h2>Cuenta Regresiva</h2>
+  <div class="countdown" id="countdown"></div>
+</section>
+
+<!--
+<section>
+  <div class="card">
+    <h2>Boletos</h2>
+    <p>Boletos disponibles: 3</p>
+  </div>
+</section>
+
+
+<section>
+  <div class="card">
+    <h2>Padres</h2>
+    <p>Padres de la novia: ...</p>
+    <p>Padres del novio: ...</p>
+  </div>
+</section>
+-->
+<section>
+  <div class="card">
+    <h2>Itinerario</h2>
+    <p>5:00 PM - Ceremonia</p>
+    <p>7:00 PM - Recepción</p>
+    <p>9:00 PM - Cena</p>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>Vestimenta</h2>
+    <p>Etiqueta Formal</p>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>Regalos</h2>
+    <p>Tu presencia es nuestro mejor regalo, pero si deseas darnos algun presente ya sea economico o para nuestro hogar se los agradeceriamos de corazón. </p>
+  </div>
+</section>
+
+<section>
+  <h2>Ubicación</h2>
+  <iframe src="https://www.google.com/maps?q=salon+de+eventos&output=embed"></iframe>
+</section>
+
+<section>
+  <h2>Confirmación</h2>
+  <a class="button" href="https://wa.me/5213326173974?text=Confirmo%20mi%20asistencia%20a%20su%20boda">Confirmar asistencia</a>
+</section>
+
+<script>
+  const sections = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  });
+
+  sections.forEach(section => observer.observe(section));
+
+  const countdown = document.getElementById('countdown');
+  const weddingDate = new Date('2026-12-31T17:00:00').getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdown.innerHTML = `${days} días ${hours}h ${minutes}m ${seconds}s`;
+  }, 1000);
+
+  let index = 0;
+  function moveSlide(direction) {
+    const track = document.getElementById('track');
+    const total = track.children.length;
+    index = (index + direction + total) % total;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  const music = document.getElementById('music');
+  function toggleMusic() {
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+</script>
+
+</body>
+</html>
